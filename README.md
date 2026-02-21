@@ -30,7 +30,7 @@ Install the remaining libraries (timm, opencv, pandas, etc.) from the requiremen
 pip install -r requirements.txt
 ```
 
-## 📂 Training Guide Date Preparation
+## 📂 Date Preparation
 The data preparation process consists of two stages: organizing the raw images and performing the 5-Fold Cross-Validation split.
 1. Raw Data Organization
 Before splitting, ensure your original dataset is stored in data/data-raw. Each sample (Case ID) folder must contain four specific view images.
