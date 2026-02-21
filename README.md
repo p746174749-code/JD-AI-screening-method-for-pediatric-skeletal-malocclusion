@@ -164,7 +164,7 @@ Since the model weights are large, they are stored externally. We provide pre-tr
 
 ```text
 checkpoints/
-└── ConvNeXt_3Input_Experiment/   # Example experiment name
+└── runs-convnext-432/   # Example experiment name
     └── fold_1/
         └── best.pth
     └── fold_2/
