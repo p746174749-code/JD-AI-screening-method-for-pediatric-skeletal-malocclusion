@@ -125,6 +125,7 @@ chmod +x scripts/train2.sh
 
 ### 📈 Monitoring & Logging
 
+
 All training logs, model checkpoints, and hyperparameter configs are saved in the `runs/` directory, organized by **Model Type** and **Timestamp**. 
 
 * **TensorBoard**: Visualize loss and accuracy curves in real-time.
@@ -136,6 +137,22 @@ All training logs, model checkpoints, and hyperparameter configs are saved in th
 
 ## 🔍 Evaluation & Results
 
+Before running the evaluation scripts, ensure your test data is organized in the same directory structure as the training data. The script `eval1.py` and `eval2.py` will iterate through each numbered folder to perform batch inference.
+
+**Directory Structure (`data/data-test/`):**
+Each subfolder represents a single sample (e.g., a patient or a case) and must contain the required image views.
+
+```text
+data/data-test/
+├── 001/                 # Sample ID
+│   ├── 1.jpg            # Frontal view
+│   ├── 2.jpg            # Frontal smile view
+│   ├── 3.jpg            # 45° profile view
+│   └── 4.jpg            # 90° profile view (Primary)
+├── 002/
+├── 003/
+└── ...
+```
 To evaluate the model performance or perform inference, you first need to prepare the trained weights and run the evaluation scripts.
 
 ### 1. Model Weights Preparation
