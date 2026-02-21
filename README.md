@@ -329,7 +329,7 @@ To validate that the model makes decisions based on clinically relevant facial f
 
 
 
-### 1. Visualizing Model Attention (`visualize_gradcam.py`)
+### 1. Visualizing Model Attention (`run_gradcam.py`)
 
 The script uses a hook-based approach to extract feature maps and gradients from the last convolutional layer of the **ConvNeXt-T** backbone. It then overlays a Jet-color heatmap onto the original facial photographs.
 
