@@ -199,10 +199,34 @@ For maximum robustness, `eval2.py` implements a **Soft Voting Strategy**. It agg
 python eval2.py --test_dir data/data-test \
                 --ckpt_paths checkpoints/ConvNeXt_3Input_Experiment \
                 --image_names 4 3 2 \
-                --out_dir results-figure \
+                --out_dir results_ensemble_5fold \
                 --gpu_id 0
 ```
 
+When you run the 5-fold ensemble script, the `--out_dir` will be populated with several CSV files. This allows you to analyze both the consistency of individual folds and the final fused performance.
+
+**Output Directory Structure:**
+```text
+results/
+├── model1.csv           # Predictions & probabilities from Fold 1
+├── model2.csv           # Predictions & probabilities from Fold 2
+├── ...
+├── model5.csv           # Predictions & probabilities from Fold 5
+└── avg_ensemble.csv     # Final fused results (The "Main" Result)
+```
+
+#### CSV Column Definitions:
+Each file (both individual models and the ensemble) contains the following columns:
+
+| Column Name | Description |
+| :--- | :--- |
+| `id` | The sample ID (derived from the subfolder name). |
+| `pred` | The final predicted class label (mapped to 1, 2, or 3). |
+| `prob_class1` | Confidence score (Softmax probability) for Class 1. |
+| `prob_class2` | Confidence score (Softmax probability) for Class 2. |
+| `prob_class3` | Confidence score (Softmax probability) for Class 3. |
+
+---
 ---
 
 ### 🚀 Quick Start Script
