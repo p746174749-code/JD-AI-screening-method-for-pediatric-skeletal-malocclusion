@@ -1,5 +1,5 @@
 # This repository contains the official implementation of the study: **"AI screening method for pediatric skeletal malocclusion using facial characteristics"**.
-Pedi-Skeletal-MVFF（AI Screening of Malocclusion via Multi-View Feature Fusion）
+PSM-MVFF: Pediatric Skeletal Malocclusion via Multi-View Feature Fusion
 
 ## 🛠️ Installation 
 We recommend using Miniconda or Anaconda to manage your Python environment to avoid dependency conflicts.
