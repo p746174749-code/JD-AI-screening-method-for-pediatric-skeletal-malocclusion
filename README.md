@@ -235,7 +235,7 @@ You can also use the provided shell script to run the inference pipeline with on
 chmod +x scripts/eval1.sh
 ./scripts/eval1.sh
 
-chmod +x scripts/eval1.sh
+chmod +x scripts/eval2.sh
 ./scripts/eval2.sh
 ```
 
