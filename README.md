@@ -78,10 +78,11 @@ data/data-fold/
 a highly configurable Single-View Framework and a Multi-View Fusion Framework. Both support automated 5-Fold Cross-Validation.
 1.Single-View Models Training (train1.py)
 This pipeline allows for training on any specific view (e.g., just the 90° profile or just the frontal view) using various state-of-the-art architectures.
-  Multiple Architectures: Supports ResNet, DenseNet, ConvNeXt (T/S/B), Swin Transformer, and Vision Transformer (ViT).
-  Customizable Input: Change the IMAGE_INDICES in the shell script to select which .jpg to use.
-  Advanced Scheduling: Includes Warmup, Cosine Annealing, and Early Stopping.
-To run the 5-fold training:
+* **Multiple Architectures**: Native support for `ResNet`, `DenseNet`, `ConvNeXt (T/S/B)`, `Swin Transformer`, and `Vision Transformer (ViT)`.
+* **Customizable Input**: Change the `IMAGE_INDICES` in the shell script to select which specific `.jpg` to use as the input.
+* **Advanced Scheduling**: Features Learning Rate Warmup, Cosine Annealing, and Early Stopping logic.
+
+**To run the 5-fold training:**
 ```bash
 # Configure MODEL_TYPE and IMAGE_INDICES inside the script first
 chmod +x scripts/train1.sh
@@ -89,9 +90,10 @@ chmod +x scripts/train1.sh
 ```
 2. Multi-View Models Training (train2.py)
 This pipeline implements our proposed Primary-Auxiliary Feature Fusion Strategy. Unlike standard multi-input models, our architecture distinguishes between the primary view and auxiliary views to enhance feature representation.
-  Primary Feature: View 4.jpg (90° profile) is treated as the primary input.
-  Auxiliary Features: Views 3.jpg, 2.jpg, or 1.jpg are processed as auxiliary inputs to provide complementary spatial information.
-  The system is highly modular. By modifying the IMAGE_INDICES in the script, you can dynamically adjust the number of inputs (e.g., 2-view, 3-view, or 4-view fusion).
+* Primary Feature: View 4.jpg (90° profile) is treated as the primary input.
+* Auxiliary Features: Views 3.jpg, 2.jpg, or 1.jpg are processed as auxiliary inputs to provide complementary spatial information.
+* The system is highly modular. By modifying the IMAGE_INDICES in the script, you can dynamically adjust the number of inputs (e.g., 2-view, 3-view, or 4-view fusion).
+To run the 5-fold training:
 ```bash
 # Configure MODEL_TYPE and IMAGE_INDICES inside the script first
 chmod +x scripts/train2.sh
