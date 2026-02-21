@@ -212,7 +212,7 @@ results/
 ├── model2.csv           # Predictions & probabilities from Fold 2
 ├── ...
 ├── model5.csv           # Predictions & probabilities from Fold 5
-└── avg_ensemble.csv     # Final fused results (The "Main" Result)
+└── avg.csv     # Final fused results (The "Main" Result)
 ```
 
 #### CSV Column Definitions:
@@ -232,8 +232,11 @@ Each file (both individual models and the ensemble) contains the following colum
 ### 🚀 Quick Start Script
 You can also use the provided shell script to run the inference pipeline with one command:
 ```bash
-chmod +x scripts/eval.sh
-./scripts/eval.sh
+chmod +x scripts/eval1.sh
+./scripts/eval1.sh
+
+chmod +x scripts/eval1.sh
+./scripts/eval2.sh
 ```
 
 
