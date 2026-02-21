@@ -132,3 +132,96 @@ All training logs, model checkpoints, and hyperparameter configs are saved in th
     tensorboard --logdir=runs/
     ```
 * **Checkpoints**: The best model for each fold is automatically saved as `best.pth` within its respective fold directory.
+
+
+## 🔍 Evaluation & Results
+
+To evaluate the model performance or perform inference, you first need to prepare the trained weights and run the evaluation scripts.
+
+### 1. Model Weights Preparation
+Since the model weights are large, they are stored externally. We provide pre-trained weights for all 5 folds.
+
+1. **Download**: Download the weights from [Your Cloud Drive Link (e.g., Google Drive/Baidu Pan)].
+2. **Setup**: Create a `checkpoints` directory in the project root and extract the weights into it.
+3. **Structure**: Ensure the directory follows this structure for the scripts to correctly locate the models:
+
+```text
+checkpoints/
+└── ConvNeXt_3Input_Experiment/   # Example experiment name
+    └── fold_1/
+        └── best.pth
+    └── fold_2/
+        └── best.pth
+    └── ... (up to fold_5)
+```
+
+---
+
+### 2. Single Checkpoint Inference (`eval1.py`)
+Use this script to verify the performance of a specific model weight file. It supports both single-view and multi-view architectures.
+
+**How to run:**
+```bash
+python eval1.py --test_dir data/data-test \
+                --ckpt checkpoints/runs-convnext/fold1/best.pth \
+                --model_type convnext_t3 \
+                --image_names 4 3 2 \
+                --gpu 0 \
+                --out_csv results_single.csv
+```
+
+### 3. 5-Fold Ensemble Evaluation (`eval2.py`)
+For maximum robustness, `eval2.py` implements a **Soft Voting Strategy**. It aggregates the class probabilities from all five folds to produce a final, fused prediction.
+
+1. **Auto-Discovery**: Automatically finds all `best.pth` files within a specified directory.
+2. **Probability Averaging**: Reduces model bias by calculating the mean probability across all folds.
+3. **Detailed Export**: Saves individual results for each model and a final ensemble file.
+
+
+
+**How to run:**
+```bash
+python eval2.py --test_dir data/data-test \
+                --ckpt_paths checkpoints/ConvNeXt_3Input_Experiment \
+                --image_names 4 3 2 \
+                --out_dir results-figure \
+                --gpu_id 0
+```
+
+---
+
+
+---
+
+### 2. Multi-Fold Ensemble Evaluation
+Our evaluation script eval2.py` automatically loads the best weights from all 5 folds, performs ensemble inference (voting/averaging), and generates comprehensive performance reports.
+
+**Key Features:**
+* **Metrics**: Calculates Accuracy, Precision, Recall, and F1-score for each fold and the ensemble.
+* **Visualization**: Automatically generates **Confusion Matrices** and **ROC Curves**.
+* **Report**: Exports all numerical results into a formatted **Excel file** for academic reporting.
+
+**How to run evaluation:**
+```bash
+python eval/ensemble_eval.py --checkpoint_dir checkpoints/ConvNeXt_3Input_Experiment --data_dir data/data-fold --output_dir results/evaluation_reports
+```
+
+---
+
+### 📊 Understanding the Ensemble Logic
+The final prediction ($y$) for each sample is determined by averaging the softmax probabilities ($P$) from each fold ($n$):
+
+$$y = \text{argmax} \left( \frac{1}{n} \sum_{i=1}^{n} P_i \right)$$
+
+**Output Files in `results-figure/`:**
+* `model1.csv` ... `model5.csv`: Individual fold predictions and probability distributions.
+* `avg_ensemble.csv`: The final consensus prediction based on all 5 folds.
+
+---
+
+### 🚀 Quick Start Script
+You can also use the provided shell script to run the inference pipeline with one command:
+```bash
+chmod +x scripts/eval.sh
+./scripts/eval.sh
+```
