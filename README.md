@@ -335,7 +335,6 @@ To validate that the model makes decisions based on clinically relevant facial f
 The script uses a hook-based approach to extract feature maps and gradients from the last convolutional layer of the **ConvNeXt-T** backbone. It then overlays a Jet-color heatmap onto the original facial photographs.
 
 * **Multi-View Support**: Generates heatmaps for all input views (90° Profile, 45° Profile, and Frontal Smile).
-* **Clinical Validation**: Helps verify if the model focuses on the **nasolabial fold** and **chin contour**, as identified in our study.
 * **Automated Batch Processing**: Iterates through the test directory and saves results for each sample.
 
 ### 2. How to Run Visualization
