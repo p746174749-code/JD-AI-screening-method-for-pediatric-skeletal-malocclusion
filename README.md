@@ -8,14 +8,14 @@ This project requires `Python 3.9` and `CUDA 11.6` We recommend using conda to m
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Ying1625/PSM-MVFF.git
+cd PSM-MVFF
 ```
 
 ### 2. Create Environment
 ```bash
-conda create -n multiview python=3.9
-conda activate multiview
+conda create -n psm-mvff python=3.9
+conda activate psm-mvff
 ```
 
 ### 3. Install PyTorch (CUDA 11.6)
