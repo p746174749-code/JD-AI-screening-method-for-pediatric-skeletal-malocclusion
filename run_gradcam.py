@@ -135,7 +135,7 @@ def run_visualization(model_path, test_dir, output_root, num_classes, device):
 
 if __name__ == '__main__':
     # ====== SETTINGS & PATHS ======
-    MODEL_WEIGHTS = '/home/py/code/classification-main/results/runs-convnext-432/fold2/best.pth'
+    MODEL_WEIGHTS = 'runs-convnext-432/fold2/best.pth'
     DATA_DIR = 'data/data-test'
     SAVE_ROOT = 'results_gradcam'
     CLASSES = 3
@@ -151,4 +151,5 @@ if __name__ == '__main__':
         output_root=SAVE_ROOT,
         num_classes=CLASSES,
         device=current_device
+
     )
