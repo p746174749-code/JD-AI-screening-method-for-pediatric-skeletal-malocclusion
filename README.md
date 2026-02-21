@@ -159,7 +159,7 @@ To evaluate the model performance or perform inference, you first need to prepar
 ### 1. Model Weights Preparation
 Since the model weights are large, they are stored externally. We provide pre-trained weights for all 5 folds.
 
-1. **Download**: Download the weights from [Your Cloud Drive Link (e.g., Google Drive/Baidu Pan)].
+1. **Download**: Download the weights from [https://drive.google.com/drive/folders/1dANClACF7XFrnCw92VwSsEW4ZTb-LgHG?usp=drive_link].
 2. **Setup**: Create a `checkpoints` directory in the project root and extract the weights into it.
 3. **Structure**: Ensure the directory follows this structure for the scripts to correctly locate the models:
 
