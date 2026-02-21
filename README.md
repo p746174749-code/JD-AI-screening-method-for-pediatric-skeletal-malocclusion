@@ -163,7 +163,7 @@ Use this script to verify the performance of a specific model weight file. It su
 **How to run:**
 ```bash
 python eval1.py --test_dir data/data-test \
-                --ckpt checkpoints/runs-convnext/fold1/best.pth \
+                --ckpt checkpoints/ConvNeXt_3Input_Experiment/fold1/best.pth \
                 --model_type convnext_t3 \
                 --image_names 4 3 2 \
                 --gpu 0 \
@@ -177,8 +177,6 @@ For maximum robustness, `eval2.py` implements a **Soft Voting Strategy**. It agg
 2. **Probability Averaging**: Reduces model bias by calculating the mean probability across all folds.
 3. **Detailed Export**: Saves individual results for each model and a final ensemble file.
 
-
-
 **How to run:**
 ```bash
 python eval2.py --test_dir data/data-test \
@@ -187,35 +185,6 @@ python eval2.py --test_dir data/data-test \
                 --out_dir results-figure \
                 --gpu_id 0
 ```
-
----
-
-
----
-
-### 2. Multi-Fold Ensemble Evaluation
-Our evaluation script eval2.py` automatically loads the best weights from all 5 folds, performs ensemble inference (voting/averaging), and generates comprehensive performance reports.
-
-**Key Features:**
-* **Metrics**: Calculates Accuracy, Precision, Recall, and F1-score for each fold and the ensemble.
-* **Visualization**: Automatically generates **Confusion Matrices** and **ROC Curves**.
-* **Report**: Exports all numerical results into a formatted **Excel file** for academic reporting.
-
-**How to run evaluation:**
-```bash
-python eval/ensemble_eval.py --checkpoint_dir checkpoints/ConvNeXt_3Input_Experiment --data_dir data/data-fold --output_dir results/evaluation_reports
-```
-
----
-
-### 📊 Understanding the Ensemble Logic
-The final prediction ($y$) for each sample is determined by averaging the softmax probabilities ($P$) from each fold ($n$):
-
-$$y = \text{argmax} \left( \frac{1}{n} \sum_{i=1}^{n} P_i \right)$$
-
-**Output Files in `results-figure/`:**
-* `model1.csv` ... `model5.csv`: Individual fold predictions and probability distributions.
-* `avg_ensemble.csv`: The final consensus prediction based on all 5 folds.
 
 ---
 
