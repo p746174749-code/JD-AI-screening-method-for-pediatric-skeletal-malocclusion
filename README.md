@@ -272,11 +272,20 @@ python calculate_metrics.py
 ==================================================
      Performance Metric Summary (Mean ± Std)      
 ==================================================
-Recall (C1)          : 85.20 ± 2.15
-Recall (C2)          : 82.10 ± 3.40
-Macro recall         : 83.65 ± 2.78
-Macro F1             : 84.12 ± 1.95
-Overall Accuracy     : 86.45 ± 1.20
+Recall (C1)          : 68.30 ± 4.08
+Recall (C2)          : 83.25 ± 4.81
+Recall (C3)          : 84.86 ± 5.01
+Macro recall         : 78.80 ± 1.34
+Specificity (C1)     : 85.87 ± 3.69
+Specificity (C2)     : 87.32 ± 2.42
+Specificity (C3)     : 93.22 ± 1.25
+Macro Specificity    : 88.80 ± 0.67
+F1 (C1)              : 71.55 ± 1.31
+F1 (C2)              : 79.55 ± 2.47
+F1 (C3)              : 84.09 ± 1.87
+Macro F1             : 78.40 ± 1.17
+Weighted F1          : 77.77 ± 1.20
+Overall Accuracy     : 77.95 ± 1.24
 ==================================================
 ```
 
