@@ -3,7 +3,7 @@ The paper is currently under review, and the code will be released subsequently.
 
 ## 🛠️ Installation 
 We recommend using Miniconda or Anaconda to manage your Python environment to avoid dependency conflicts.
-This project requires Python `3.8+` and `CUDA 11.6.` We recommend using conda to manage dependencies.
+This project requires `Python 3.8+` and `CUDA 11.6.` We recommend using conda to manage dependencies.
 
 1. Clone the Repository
 
