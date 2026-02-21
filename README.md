@@ -1,5 +1,5 @@
-The paper is currently under review, and the code will be released subsequently.
-
+# This repository contains the official implementation of the study: **"AI screening method for pediatric skeletal malocclusion using facial characteristics"**.
+keletal malocclusion affects 50% to 80% of children globally. Traditional screening relies on **lateral cephalograms (X-rays)**, which involve ionizing radiation and require specialized orthodontic expertise. To address these limitations, we developed a **radiation-free, low-cost AI system** that uses standard facial photographs for automated screening.
 
 ## 🛠️ Installation 
 We recommend using Miniconda or Anaconda to manage your Python environment to avoid dependency conflicts.
