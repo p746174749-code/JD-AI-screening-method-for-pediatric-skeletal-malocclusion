@@ -5,34 +5,35 @@
 We recommend using Miniconda or Anaconda to manage your Python environment to avoid dependency conflicts.
 This project requires `Python 3.9` and `CUDA 11.6` We recommend using conda to manage dependencies.
 
-1. Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
 ```
 
-3. Create Environment
+### 2. Create Environment
 ```bash
 conda create -n multiview python=3.9
 conda activate multiview
 ```
 
-4. Install PyTorch (CUDA 11.6)
-Since the project uses a specific CUDA version, please install PyTorch using the following command:
+### 3. Install PyTorch (CUDA 11.6)
+Since the project uses a specific `CUDA` version, please install `PyTorch` using the following command:
 ```bash
 pip install torch==1.13.0+cu116 torchvision==0.14.0+cu116 torchaudio==0.13.0+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
 ```
 
-5. Install Other Dependencies
-Install the remaining libraries (timm, opencv, pandas, etc.) from the requirements.txt:
+### 4. Install Other Dependencies
+Install the remaining libraries from the `requirements.txt`:
 ```bash
 pip install -r requirements.txt
 ```
 
 ## 📂 Date Preparation
 The data preparation process consists of two stages: organizing the raw images and performing the 5-Fold Cross-Validation split.
-1. Raw Data Organization
+
+### 1. Raw Data Organization
 Before splitting, ensure your original dataset is stored in data/data-raw. Each sample (Case ID) folder must contain four specific view images.
 ```text
 data/data-raw/
@@ -47,8 +48,8 @@ data/data-raw/
 ├── class_1/
 └── class_2/
 ```
-2. 5-Fold Cross-Validation Split
-We use utlis/dataset_split.py to randomly partition the raw data into 5 folds while maintaining the class distribution (stratified-like approach).
+### 2. 5-Fold Cross-Validation Split
+We use `utlis/dataset_split.py` to randomly partition the raw data into 5 folds while maintaining the class distribution.
 Run the splitting script:
 ```bash
 python utlis/dataset_split.py
