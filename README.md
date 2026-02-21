@@ -5,6 +5,7 @@ We recommend using Miniconda or Anaconda to manage your Python environment to av
 This project requires Python 3.8+ and CUDA 11.6. We recommend using conda to manage dependencies.
 
 1. Clone the Repository
+'''
 Bash
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
