@@ -180,7 +180,7 @@ Use this script to verify the performance of a specific model weight file. It su
 **How to run:**
 ```bash
 python eval1.py --test_dir data/data-test \
-                --ckpt checkpoints/ConvNeXt_3Input_Experiment/fold1/best.pth \
+                --ckpt checkpoints/runs-convnext-432/fold1/best.pth \
                 --model_type convnext_t3 \
                 --image_names 4 3 2 \
                 --gpu 0 \
@@ -197,7 +197,7 @@ For maximum robustness, `eval2.py` implements a **Soft Voting Strategy**. It agg
 **How to run:**
 ```bash
 python eval2.py --test_dir data/data-test \
-                --ckpt_paths checkpoints/ConvNeXt_3Input_Experiment \
+                --ckpt_paths checkpoints/runs-convnext-432 \
                 --image_names 4 3 2 \
                 --out_dir results_ensemble_5fold \
                 --gpu_id 0
