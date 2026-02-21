@@ -6,21 +6,25 @@ This project requires Python 3.8+ and CUDA 11.6. We recommend using conda to man
 
 1. Clone the Repository
 
-`Bash
-`git clone https://github.com/your-username/your-repo-name.git
-`cd your-repo-name
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
 
 3. Create Environment
-Bash
+```bash
 conda create -n multiview python=3.8 -y
 conda activate multiview
+```
 
 5. Install PyTorch (CUDA 11.6)
 Since the project uses a specific CUDA version, please install PyTorch using the following command:
-Bash
+```bash
 pip install torch==1.13.0+cu116 torchvision==0.14.0+cu116 torchaudio==0.13.0+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
+```
 
 6. Install Other Dependencies
 Install the remaining libraries (timm, opencv, pandas, etc.) from the requirements.txt:
-Bash
+```bash
 pip install -r requirements.txt
+```
