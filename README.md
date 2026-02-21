@@ -1,8 +1,9 @@
 The paper is currently under review, and the code will be released subsequently.
 
-🛠️ Installation 
+
+## 🛠️ Installation 
 We recommend using Miniconda or Anaconda to manage your Python environment to avoid dependency conflicts.
-This project requires Python 3.8+ and CUDA 11.6. We recommend using conda to manage dependencies.
+This project requires Python `3.8+` and `CUDA 11.6.` We recommend using conda to manage dependencies.
 
 1. Clone the Repository
 
@@ -29,7 +30,7 @@ Install the remaining libraries (timm, opencv, pandas, etc.) from the requiremen
 pip install -r requirements.txt
 ```
 
-📂 Data Preparation
+## 📂 Training Guide Date Preparation
 The data preparation process consists of two stages: organizing the raw images and performing the 5-Fold Cross-Validation split.
 1. Raw Data Organization
 Before splitting, ensure your original dataset is stored in data/data-raw. Each sample (Case ID) folder must contain four specific view images.
@@ -74,29 +75,73 @@ data/data-fold/
 └── fold_5/                  # Fold 5 experimental data      
 ```
 
-🏋️ Training Guide
-a highly configurable Single-View Framework and a Multi-View Fusion Framework. Both support automated 5-Fold Cross-Validation.
-1.Single-View Models Training (train1.py)
+## 🏋️ Training Guide
+
+Our framework provides a highly configurable **Single-View Pipeline** and a **Multi-View Fusion Pipeline**. Both support automated **5-Fold Cross-Validation** to ensure robust and reproducible experimental results.
+
+---
+
+### 1. Single-View Models Training (`train1.py`)
+
 This pipeline allows for training on any specific view (e.g., just the 90° profile or just the frontal view) using various state-of-the-art architectures.
+
 * **Multiple Architectures**: Native support for `ResNet`, `DenseNet`, `ConvNeXt (T/S/B)`, `Swin Transformer`, and `Vision Transformer (ViT)`.
 * **Customizable Input**: Change the `IMAGE_INDICES` in the shell script to select which specific `.jpg` to use as the input.
 * **Advanced Scheduling**: Features Learning Rate Warmup, Cosine Annealing, and Early Stopping logic.
 
+
+
 **To run the 5-fold training:**
+
 ```bash
-# Configure MODEL_TYPE and IMAGE_INDICES inside the script first
+# 1. Configure MODEL_TYPE and IMAGE_INDICES inside the script first
 chmod +x scripts/train1.sh
+
+# 2. Execute the training
 ./scripts/train1.sh
 ```
-2. Multi-View Models Training (train2.py)
-This pipeline implements our proposed Primary-Auxiliary Feature Fusion Strategy. Unlike standard multi-input models, our architecture distinguishes between the primary view and auxiliary views to enhance feature representation.
-* Primary Feature: View 4.jpg (90° profile) is treated as the primary input.
-* Auxiliary Features: Views 3.jpg, 2.jpg, or 1.jpg are processed as auxiliary inputs to provide complementary spatial information.
-* The system is highly modular. By modifying the IMAGE_INDICES in the script, you can dynamically adjust the number of inputs (e.g., 2-view, 3-view, or 4-view fusion).
-To run the 5-fold training:
+
+---
+
+### 2. Multi-View Models Training (`train2.py`)
+
+This pipeline implements our proposed **Primary-Auxiliary Feature Fusion Strategy**. Unlike standard multi-input models, our architecture distinguishes between the primary view and auxiliary views to enhance feature representation.
+
+* **Primary Feature**: View `4.jpg` (90° profile) is treated as the anchor/primary input.
+* **Auxiliary Features**: Views `3.jpg`, `2.jpg`, or `1.jpg` are processed as auxiliary inputs to provide complementary spatial information.
+* **Modular Design**: By modifying the `IMAGE_INDICES` in the script, you can dynamically adjust the number of inputs (e.g., 2-view, 3-view, or 4-view fusion).
+
+
+
+**To run the 5-fold training:**
+
 ```bash
-# Configure MODEL_TYPE and IMAGE_INDICES inside the script first
+# 1. Configure MODEL_TYPE and IMAGE_INDICES inside the script first
 chmod +x scripts/train2.sh
+
+# 2. Execute the training
 ./scripts/train2.sh
 ```
 
+---
+
+### 💡 Summary of Training Modes
+
+| Feature | Single-View (`train1.py`) | Multi-View (`train2.py`) |
+| :--- | :--- | :--- |
+| **Logic** | Baseline training on a single view | **Primary-Auxiliary Fusion** |
+| **Input** | Single index (e.g., `"4"`) | Multiple indices (e.g., `"4 3 2"`) |
+| **Backbones** | CNNs & Transformers (timm-based) | Multi-stream Fusion (shared weights) |
+| **Goal** | Establish performance per perspective | Maximize accuracy via spatial fusion |
+
+---
+
+### 📈 Monitoring & Logging
+
+All training logs, model checkpoints, and hyperparameter configs are saved in the `runs/` directory, organized by **Model Type** and **Timestamp**. 
+
+* **TensorBoard**: Visualize loss and accuracy curves in real-time.
+    ```bash
+    tensorboard --logdir=runs/
+    ```
+* **Checkpoints**: The best model for each fold is automatically saved as `best.pth` within its respective fold directory.
