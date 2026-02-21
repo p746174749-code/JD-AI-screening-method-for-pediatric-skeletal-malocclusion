@@ -90,7 +90,6 @@ This pipeline allows for training on any specific view (e.g., just the 90° prof
 * **Advanced Scheduling**: Features Learning Rate Warmup, Cosine Annealing, and Early Stopping logic.
 
 
-
 **To run the 5-fold training:**
 
 ```bash
@@ -112,7 +111,6 @@ This pipeline implements our proposed **Primary-Auxiliary Feature Fusion Strateg
 * **Modular Design**: By modifying the `IMAGE_INDICES` in the script, you can dynamically adjust the number of inputs (e.g., 2-view, 3-view, or 4-view fusion).
 
 
-
 **To run the 5-fold training:**
 
 ```bash
@@ -122,17 +120,6 @@ chmod +x scripts/train2.sh
 # 2. Execute the training
 ./scripts/train2.sh
 ```
-
----
-
-### 💡 Summary of Training Modes
-
-| Feature | Single-View (`train1.py`) | Multi-View (`train2.py`) |
-| :--- | :--- | :--- |
-| **Logic** | Baseline training on a single view | **Primary-Auxiliary Fusion** |
-| **Input** | Single index (e.g., `"4"`) | Multiple indices (e.g., `"4 3 2"`) |
-| **Backbones** | CNNs & Transformers (timm-based) | Multi-stream Fusion (shared weights) |
-| **Goal** | Establish performance per perspective | Maximize accuracy via spatial fusion |
 
 ---
 
