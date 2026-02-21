@@ -322,3 +322,39 @@ python plot_curves.py
 ```
 
 ---
+
+## 🧠 Explainability & Visual Interpretability (Grad-CAM)
+
+To validate that the model makes decisions based on clinically relevant facial features (and not background noise), we implement **Grad-CAM**. This technique generates heatmaps highlighting the regions that most strongly influenced the AI's classification.
+
+
+
+### 1. Visualizing Model Attention (`visualize_gradcam.py`)
+
+The script uses a hook-based approach to extract feature maps and gradients from the last convolutional layer of the **ConvNeXt-T** backbone. It then overlays a Jet-color heatmap onto the original facial photographs.
+
+* **Multi-View Support**: Generates heatmaps for all input views (90° Profile, 45° Profile, and Frontal).
+* **Clinical Validation**: Helps verify if the model focuses on the **nasolabial fold** and **chin contour**, as identified in our study.
+* **Automated Batch Processing**: Iterates through the test directory and saves results for each sample.
+
+### 2. How to Run Visualization
+
+```bash
+# Update the MODEL_WEIGHTS and DATA_DIR paths in the script first
+python run_gradcam.py
+```
+
+---
+
+### 🖼️ Interpreting Grad-CAM Results
+
+The output will be saved in the `results_gradcam/` directory, organized by sample ID. 
+
+**Example output for one sample:**
+* `gradcam_x1.png` (90° Profile View)
+* `gradcam_x2.png` (45° Profile View)
+* `gradcam_x3.png` (Frontal View)
+
+
+---
+
